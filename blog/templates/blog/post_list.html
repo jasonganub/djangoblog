@@ -6,15 +6,12 @@
     <div>
       <h1><a href="">Jason's Blog</a></h1>
     </div>
-    <div>
-      <p>published: 12.12.2015, 12:56pm</p>
-      <h2><a href="">My first post</a></h2>
-      <p>Hello world, it is I. This is my first Django application with styling.</p>
-    </div>
-    <div>
-      <p>published: 12.12.2015, 12.58pm</p>
-      <h2><a href="">My second post</a></h2>
-      <p>If only I wrote blog posts more often..</p>
-    </div>
+    {% for post in posts %}
+      <div>
+        <p>published: {{ post.published_date }}</p>
+        <h2><a href="">{{ post.title }}</a></h1>
+        <p>{{ post.text|linebreaks }}
+      </div>
+    {% endfor %}
   </body>
 </html>
