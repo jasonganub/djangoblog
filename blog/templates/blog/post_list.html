@@ -1,23 +1,13 @@
-{% load staticfiles %}
-<html>
-  <head>
-    <title>Jason's Blog</title>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
-    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-  </head>
-  <body>
-    <div class="page-header">
-      <h1><a href="">Jason's Blog</a></h1>
-    </div>
+{% extends 'blog/base.html' %}
 
-    {% for post in posts %}
-      <div class="post">
-        <p>published: {{ post.published_date }}</p>
-        <h1><a href="">{{ post.title }}</a></h1>
-        <p>{{ post.text|linebreaks }}</p>
+{% block content %}
+  {% for post in posts %}
+    <div class="post">
+      <div class="date">
+        {{ post.published_date }}
       </div>
-    {% endfor %}
-  </body>
-</html>
+      <h1><a href="{% url 'post_detail' post_id=post.pk %}">{{ post.title }}</a></h1>
+      <p>{{ post.text|linebreaks }}</p>
+    </div>
+  {% endfor %}
+{% endblock %}
